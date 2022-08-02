@@ -1,20 +1,71 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './update.css'
 
 const Update = (props) => {
 
-    
-    
-    // let value;
-    // const handle = (e) =>{
-    //    value = e.target.value;
-    //    props.setChange(value) 
-    // }
+  
+  const [task, setTask] = useState({
+    heading:"",
+    description:"",
+    completed:"",
+    comments:""
+  })
 
-    const Updatetask = (e)=>{
+
+  
+  let  value, name;
+  const handleInput = (e)=>{
+        
+        name= e.target.name;
+        value= e.target.value;
+        setTask({...task, [name]:value})
+
+  }
+
+
+
+  // const fetchData = async () => {
+  //   const response=await fetch("/"+ props.iid)
+      
+  //     const data = await response.json()
+  //     console.log(data.list);
+  //     setTask({
+  //       heading: data.list.heading,
+
+  //     });
+ 
+  // }
+
+
+    const Updatetask = async(e)=>{
       e.preventDefault();
         props.setUpdate(0);
+        
+        const {heading, description,completed,
+        comments} = task;
+       console.log(task)
+        const res = await fetch("/" + props.iid, {
+            method:"PUT",
+            headers:{
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+        
+             heading,
+             description,
+             completed,
+             comments
+            })
+
+    })
+    
     }
+
+    // useEffect(()=>{
+
+    //   fetchData();
+
+    // },[])
 
 
 
@@ -24,35 +75,34 @@ const Update = (props) => {
       <form method="POST">
         <div className='form'>
       <input type="text"  name="heading"
-      //  value={task.heading} 
+       value={task.heading} 
       placeholder="Heading"
-      // onChange={handleInput} 
-      // onClick={()=>{
-      //   setAdded(0)
-      // }}
+      onChange={handleInput} 
+      
       />
       <input type="text" id="task" name="description"
-      //  value={task.description} 
+       value={task.description} 
       placeholder="Description"
-      // onChange={handleInput} 
+      onChange={handleInput} 
       />
       <input type="text" id="task" name="completed" 
-      // value={task.completed}
+      value={task.completed}
       placeholder="Completed ?"
-      // onChange={handleInput} 
+      onChange={handleInput} 
       />
       <input type="text" id="task" name="comments"
-      //  value={task.comments} 
+       value={task.comments} 
       placeholder="Comments"
-      // onChange={handleInput} 
+      onChange={handleInput} 
       />
       <button  type="submit"
-      className='submit '  
+      className='submit update-button'  
       onClick={Updatetask}
       >Update Task</button>
      
      </div>
       </form>
+    
     </div>
     
   );

@@ -63,6 +63,7 @@ useEffect(()=>{
               }}>Delete</span>
               <span className="update" onClick = {()=>{
                console.log(l._id)
+               props.setIid(l._id)
                props.setUpdate(1)
 
               }}>Update</span>

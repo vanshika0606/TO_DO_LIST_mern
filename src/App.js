@@ -13,6 +13,7 @@ function App() {
   const [lists,setLists] = useState([])
   const [click, setClick] = useState(0)
   const [update, setUpdate] = useState(0)
+  const [iid , setIid] = useState('')
   
 
   return (
@@ -20,10 +21,13 @@ function App() {
 
 
   <Addtask  lists={lists} setLists={setLists} setClick={setClick} click={click}/>
-
-      <Update update={update} setUpdate={setUpdate}/>
-
-   <Card  click={click} setClick={setClick} setUpdate={setUpdate} />
+    
+      <Card  click={click} setClick={setClick} setUpdate={setUpdate} setIid={setIid}  />
+      
+      <Update update={update} setUpdate={setUpdate} iid={iid}/>
+    {
+      console.log(iid)
+    }
 
   
 

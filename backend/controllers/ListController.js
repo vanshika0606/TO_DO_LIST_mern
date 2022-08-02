@@ -51,5 +51,15 @@ exports.Updatetask = async(req,res,next) =>{
     })
   }
 
+exports.GetBYid = async(req,res,next) =>{
+
+    const list = await List.findById(req.params.id);
+
+    res.status(200).json({
+        success: true,
+        list
+      });
+
+}
 
 
