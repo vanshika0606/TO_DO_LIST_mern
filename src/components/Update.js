@@ -58,6 +58,13 @@ const Update = (props) => {
             })
 
     })
+
+    setTask({
+      heading:"",
+      description:"",
+      completed:"",
+      comments:""
+    })
     
     }
 
@@ -72,7 +79,7 @@ const Update = (props) => {
   return (
     
     <div className={props.update===1? 'update-form' : 'none'} >
-      <form method="POST">
+      <form method="PUT">
         <div className='form'>
       <input type="text"  name="heading"
        value={task.heading} 
