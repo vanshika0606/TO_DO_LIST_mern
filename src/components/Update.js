@@ -1,32 +1,61 @@
 import React, { useState } from 'react'
+import './update.css'
 
 const Update = (props) => {
 
     
-    let  mystyle={
-        display: props.edit===1?'block':'none'
-    }
-    let value;
-    const handle = (e) =>{
-       value = e.target.value;
-       props.setChange(value)
-        
-        
-            
-        
+    
+    // let value;
+    // const handle = (e) =>{
+    //    value = e.target.value;
+    //    props.setChange(value) 
+    // }
 
+    const Updatetask = (e)=>{
+      e.preventDefault();
+        props.setUpdate(0);
     }
 
-    const update = ()=>{
-        props.setEdit(0)
-    }
+
 
   return (
-    <div style={mystyle}>
-      <input type="text" value={props.change} onChange={handle}/>
-      <button   onClick={update}>edit</button>
+    
+    <div className={props.update===1? 'update-form' : 'none'} >
+      <form method="POST">
+        <div className='form'>
+      <input type="text"  name="heading"
+      //  value={task.heading} 
+      placeholder="Heading"
+      // onChange={handleInput} 
+      // onClick={()=>{
+      //   setAdded(0)
+      // }}
+      />
+      <input type="text" id="task" name="description"
+      //  value={task.description} 
+      placeholder="Description"
+      // onChange={handleInput} 
+      />
+      <input type="text" id="task" name="completed" 
+      // value={task.completed}
+      placeholder="Completed ?"
+      // onChange={handleInput} 
+      />
+      <input type="text" id="task" name="comments"
+      //  value={task.comments} 
+      placeholder="Comments"
+      // onChange={handleInput} 
+      />
+      <button  type="submit"
+      className='submit '  
+      onClick={Updatetask}
+      >Update Task</button>
+     
+     </div>
+      </form>
     </div>
-  )
-}
+    
+  );
+};
 
 export default Update
